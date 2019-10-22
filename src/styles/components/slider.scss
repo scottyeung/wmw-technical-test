@@ -45,7 +45,7 @@ https://flickity.metafizzy.co
   }
   
   .flickity-button:hover {
-    background: white;
+    background: transparent;
     cursor: pointer;
   }
   
@@ -103,9 +103,8 @@ https://flickity.metafizzy.co
   /* ---- page dots ---- */
   
   .flickity-page-dots {
-    position: absolute;
+    position: relative;
     width: 100%;
-    bottom: -25px;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -128,4 +127,10 @@ https://flickity.metafizzy.co
   
   .flickity-page-dots .dot.is-selected {
     opacity: 1;
+  }
+
+  @include media-query($small) {
+    .flickity-prev-next-button.previous, .flickity-prev-next-button.next {
+        display: none;
+    }
   }
