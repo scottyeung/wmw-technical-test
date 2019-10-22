@@ -6,7 +6,9 @@
  *
  * @namespace featuredCollection
  */
-import {register} from '@shopify/theme-sections';
+import {
+  register
+} from '@shopify/theme-sections';
 import Flickity from 'flickity';
 import $ from 'jquery';
 
@@ -27,23 +29,23 @@ register('featured-collection', {
       cellAlign: 'left',
     });
 
-    $('.add-to-cart').click(function (e) {
+    $('.add-to-cart').click(function(e) {
       e.preventDefault();
-        
+
       $.ajax({
-      type: 'POST',
-      url: '/cart/add.js',
-      data: {
-        quantity: $(this).data('quantity'),
-        id: $(this).data("variant-id"),
-      },
-        dataType: 'json',           
-        success: function() {
-          $.getJSON('/cart.js', function(cart) {
-            $('.site-header__cart .count').text('(' + cart.item_count + ')');
+        type: 'POST',
+        url: '/cart/add.js',
+        data: {
+          quantity: $(this).data('quantity'),
+          id: $(this).data("variant-id"),
+        },
+        dataType: 'json',
+        success: function () {
+          $.getJSON('/cart.js', function (cart) {
+            $('.site-header__cart .count').text(`(${cart.item_count})`);
           });
         },
-      });  
+      });
     });
   },
 
