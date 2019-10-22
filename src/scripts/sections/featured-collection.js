@@ -7,6 +7,7 @@
  * @namespace featuredCollection
  */
 import {register} from '@shopify/theme-sections';
+import Flickity from 'flickity';
 
 /**
  * Featured collection constructor
@@ -18,6 +19,12 @@ register('featured-collection', {
 
   init() {
     window.console.log('Initialising featured collection section');
+
+    let flkty = new Flickity('.featured-collection', {
+      cellSelector: '.featured-collection__item',
+      wrapAround: true,
+      cellAlign: 'left'
+    });
   },
 
   publicMethod() {
