@@ -47,6 +47,7 @@ register('featured-collection', {
         },
       });
     });
+
   },
 
   publicMethod() {
