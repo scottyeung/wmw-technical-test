@@ -8,6 +8,7 @@
  */
 import {register} from '@shopify/theme-sections';
 import Flickity from 'flickity';
+import $ from 'jquery';
 
 /**
  * Featured collection constructor
@@ -23,12 +24,32 @@ register('featured-collection', {
     let flkty = new Flickity('.featured-collection', {
       cellSelector: '.featured-collection__item',
       wrapAround: true,
-      cellAlign: 'left'
+      cellAlign: 'left',
+    });
+
+    $('.add-to-cart').click(function (e) {
+      e.preventDefault();
+        
+      $.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: {
+        quantity: $(this).data('quantity'),
+        id: $(this).data("variant-id"),
+      },
+        dataType: 'json',           
+        success: function() {
+          $.getJSON('/cart.js', function(cart) {
+            $('.site-header__cart .count').text('(' + cart.item_count + ')');
+          });
+        },
+      });  
     });
   },
 
   publicMethod() {
     // Custom public section method
+
   },
 
   _privateMethod() {
